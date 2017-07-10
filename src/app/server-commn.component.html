@@ -99,6 +99,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h4>Product Details
+                    <input #filVal (keyup)="filterNames(filVal.value,$event)" placeholder="filter by name">
                     <button style="float:right;" type="button" class="btn btn-success btn-md" (click)="showProductForm=!showProductForm">
                         <span class="badge">+</span>Add Product
                         </button>

@@ -21,12 +21,13 @@ export class ServerCommnComponent implements OnInit{
     filVal:string='';
   heroes: Hero[];
   products:Products[];
+  origProducts:Products[];
   mode = 'Observables';
   productsForm:FormGroup;
   product = new Products();
    constructor (overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal,private heroService: HeroService) {
      //overlay.defaultViewContainer = vcRef;
-     
+     //this.origProducts=this.products;
    }
  
 updFilter(inp){
@@ -54,7 +55,9 @@ onClick() {
 
 
 
-  ngOnInit() { this.getHeroes();this.getProducts(); 
+  ngOnInit() { this.getHeroes();    
+    this.products=this.origProducts;
+    this.getProducts(); 
     this.productsForm=new FormGroup({
             //'id':new FormControl('55'),
             'product_name':new FormControl('',Validators.required),
@@ -191,4 +194,23 @@ showTB=-1;
   }
 
   //Sorting logic ends here...
+
+  //filtering logic starts here...
+  //this.products=this.origProducts;
+  filterNames(filVal,ekey){
+    //alert(filVal+' '+ekey.keyCode);
+    this.products=this.origProducts;
+  
+    let filArray=[];
+    for(let prod of this.products)
+    {
+      var re = new RegExp(filVal, 'gi');      
+      
+      if(prod.product_name.match(re)){       
+        filArray.push(prod);
+      }
+    }
+    this.products=filArray;
+  }
+  //filtering logic ends here...
 }
