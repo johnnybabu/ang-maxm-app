@@ -1,0 +1,152 @@
+<div class="container">
+    <h2>Server Communications through http protocol {{mode}}</h2>
+<!--<h1>Tour of Heroes ({{mode}})</h1>-->
+<h3>Heroes:</h3>
+<!--<div class="grid-style1">
+<ul>
+  <li *ngFor="let hero of heroes">{{hero.title}}</li>
+</ul>
+</div>-->
+<!--<div class="grid-head-style1">
+<table class="table table-bordered table-fixedheader table-condensed table-striped table-hover table-responsive ">
+    <thead>
+        <tr>
+            <th style="width:1%;">UserId</th>
+            <th style="width:1%;">Id</th>
+            <th style="width:10%;">Title</th>
+            <th style="width:5%;">Completed</th>
+        </tr>
+    </thead>
+</table>
+</div>-->
+
+
+
+<i class="fa fa-american-sign-language-interpreting fa-5x" aria-hidden="true"> </i>
+<button (click)="onClick()">Alert</button>
+<button (click)="showPosts=!showPosts">
+    <span *ngIf="!showPosts">Show Posts</span>
+    <span *ngIf="showPosts">Hide Posts</span>
+</button>
+<!--<input type="text" [(ngModel)]="filVal" (keyup)="0">{{filVal}}-->
+<input type="text" placeholder="Search" #queryElem (keyup)="0">{{queryElem.value}}
+<div *ngIf="showPosts" class="grid-style1">
+<table class="table table-bordered table-fixedheader table-condensed table-striped table-hover table-responsive">
+    <thead>
+        <tr>
+            <th style="width:1%;">UserId</th>
+            <th style="width:1%;">Id</th>
+            <th style="width:10%;">Title</th>
+            <th style="width:5%;">Completed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let hero of heroes|filter:queryElem.value">
+            <td style="width:1%;" >{{hero.userId}}</td>
+            <td style="width:1%;">{{hero.id}}</td>
+            <td style="width:10%;">{{hero.title}}</td>
+            <td style="width:5%;">{{hero.completed}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<!--<label>New hero name: <input #newHeroName /></label>
+<button (click)="addHero(newHeroName.value); newHeroName.value=''">Add Hero</button>-->
+
+<hr>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default" *ngIf="showProductForm">
+            <div class="panel-body">
+                <h4>Enter Product Details</h4>
+<form [formGroup]="productsForm"  (ngSubmit)="addProducts()" class="form-horizontal">
+   <!--<div class="form-group"> <input formControlName="id"></div>-->
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="product_name">Product Name:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" id="product_name" formControlName="product_name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="product_code">Product Code:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" id="product_code" formControlName="product_code">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="category">Category:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" id="category" formControlName="category">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="sub_category">Sub Category:</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" id="sub_category" formControlName="sub_category">
+        </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary" [disabled]="!productsForm.valid">Add Product</button>
+      </div>
+    </div>
+</form>
+</div>
+</div>
+</div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Product Details
+                    <button style="float:right;" type="button" class="btn btn-success btn-md" (click)="showProductForm=!showProductForm">
+                        <span class="badge">+</span>Add Product
+                        </button>
+                </h4>
+<table class="table table-bordered table-fixedheader table-condensed table-striped table-hover table-responsive">
+    <thead style="background-color:#334444;color:white;">
+        <tr>
+            <th>Id</th>
+            <th>Code</th>
+            <th>
+                <span (click)="ProdArw=!showArw;sortByFunc('product_name')" style="cursor:pointer;">
+                    Product
+                    <span *ngIf="!ProdArw"><i class="fa fa-caret-up" style="font-size:18px"></i></span>
+                    <span *ngIf="ProdArw"><i class="fa fa-caret-down" style="font-size:18px"></i></span>
+                </span>
+            </th>
+            <th>                
+                <span (click)="CategArw=!CategArw;sortByFunc('category')" style="cursor:pointer;">
+                    Category
+                    <span *ngIf="!CategArw"><i class="fa fa-caret-up" style="font-size:18px"></i></span>
+                    <span *ngIf="CategArw"><i class="fa fa-caret-down" style="font-size:18px"></i></span>
+                </span>
+            </th>
+            <th>SubCategory</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody style="background-color:aliceblue;">
+        <tr *ngFor="let prod of products;let i=index" [attr.data-index]="i">
+            <td>{{prod.id}}</td>
+            <td>{{prod.product_code}}</td>
+            <td>
+                <span *ngIf="!(i==showTB)" >{{prod.product_name}}</span>
+                <input *ngIf="(i==showTB)" type="text" [(ngModel)]="pname">
+            </td>
+            <td>{{prod.category}}</td>
+            <td>{{prod.sub_category}}</td>
+            <td><span style="cursor:pointer;" (click)="removeProduct(prod)"><i class="fa fa-trash-o" aria-hidden="true"></i></span></td>
+            <td>
+                <span style="cursor:pointer;" *ngIf="(i==showTB)" (click)="updateProduct(prod)"><i class="fa fa-floppy-o" aria-hidden="true"></i></span>
+                <span style="cursor:pointer;" *ngIf="(i==showTB)" (click)="cancelEdit(prod)"><i class="fa fa-times" aria-hidden="true"></i></span>                
+                <span style="cursor:pointer;" *ngIf="!(i==showTB)" (click)="editProduct(prod,i)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

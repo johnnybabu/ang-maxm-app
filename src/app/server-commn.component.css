@@ -1,0 +1,29 @@
+.grid-style1{
+    /*display: inline-block;*/
+    height: 320px;
+    width: 700px;
+    /*border: 1px solid black;*/
+    overflow-y: scroll;
+
+}
+.grid-head-style1{
+    height: 320px;
+    width: 700px;
+    margin-bottom: -25%;
+}
+
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
