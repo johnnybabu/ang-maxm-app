@@ -151,8 +151,14 @@ showTB=-1;
     if((this.col_name===col && this.sortToggle==true) || this.col_name=='')
     {this.sortToggle=false;} else {this.sortToggle=true;}      
 
-    if(this.sortToggle==false){
-        //this.PnameSortFlag=true;
+    let isColString:any;
+    for(let name of this.products){
+      isColString=name[col];
+    }   
+
+    if(isNaN(isColString)){ //if string
+      if(this.sortToggle==false){
+        //sorting string start...
         this.products.sort(function(a, b) {           
         var nameA = a[col].toUpperCase(); // ignore upper and lowercase
         var nameB = b[col].toUpperCase(); // ignore upper and lowercase
@@ -168,8 +174,20 @@ showTB=-1;
     } else {
       //this.PnameSortFlag=false;
       this.products.reverse();
-    } //end name sort logic    
-    this.col_name=col;        
+    } 
+    //sorting string end...
+  }else{ //if number
+      if(this.sortToggle==false){
+        this.products.sort(function (a, b) {
+        return b[col] - a[col];
+      });
+      } else{
+        this.products.sort(function (a, b) {
+        return a[col] - b[col];
+        });
+      }    
+    }        
+    this.col_name=col;          
   }
 
   //Sorting logic ends here...

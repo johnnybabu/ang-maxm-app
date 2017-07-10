@@ -106,7 +106,13 @@
 <table class="table table-bordered table-fixedheader table-condensed table-striped table-hover table-responsive">
     <thead style="background-color:#334444;color:white;">
         <tr>
-            <th>Id</th>
+            <th>                
+                <span (click)="IdArw=!IdArw;sortByFunc('id')" style="cursor:pointer;">
+                    Id
+                    <span *ngIf="!IdArw"><i class="fa fa-caret-up" style="font-size:18px"></i></span>
+                    <span *ngIf="IdArw"><i class="fa fa-caret-down" style="font-size:18px"></i></span>
+                </span>
+            </th>
             <th>Code</th>
             <th>
                 <span (click)="ProdArw=!showArw;sortByFunc('product_name')" style="cursor:pointer;">
