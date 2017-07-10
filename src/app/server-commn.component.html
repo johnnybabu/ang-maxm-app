@@ -122,7 +122,13 @@
                     <span *ngIf="CategArw"><i class="fa fa-caret-down" style="font-size:18px"></i></span>
                 </span>
             </th>
-            <th>SubCategory</th>
+            <th>
+                <span (click)="sCategArw=!sCategArw;sortByFunc('sub_category')" style="cursor:pointer;">
+                    SubCategory
+                    <span *ngIf="!sCategArw"><i class="fa fa-caret-up" style="font-size:18px"></i></span>
+                    <span *ngIf="sCategArw"><i class="fa fa-caret-down" style="font-size:18px"></i></span>
+                </span>                
+            </th>
             <th>Delete</th>
             <th>Edit</th>
         </tr>
