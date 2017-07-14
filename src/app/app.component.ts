@@ -13,4 +13,12 @@ export class AppComponent {
       (param:any)=>this.param=param['analytics']
     );
   }
+
+  openModal() {
+        document.getElementById('myModal').style.display = "block";
+    }
+
+    closeModal() {
+        document.getElementById('myModal').style.display = "none";       
+    }
 }

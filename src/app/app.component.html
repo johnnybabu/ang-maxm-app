@@ -12,17 +12,44 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
-    <li><a [routerLink]="['/user',id.value]" routerLinkActive="active">User</a></li>
+    <!--<li><a [routerLink]="['/user',id.value]" routerLinkActive="active">User</a></li>-->
+    <li><a routerLink="/user" routerLinkActive="active">User</a></li>
     <li><a routerLink="/user-detail" routerLinkActive="active">UserDetails</a></li>
     <li><a routerLink="/user-edit" routerLinkActive="active">UserEdit</a></li>
     <li><a routerLink="/server-commn" routerLinkActive="active">Server Commn</a></li>
+    <!--<li><a routerLink="/demo1" routerLinkActive="active">Demo 1</a></li>-->
+    <li>
+      <div class="dropdown">
+        <span class="dropbtn">Demos</span>
+        <div class="dropdown-content">
+          <li><a routerLink="/demo1" routerLinkActive="active">Demo 1</a></li>
+          <a routerLink="/" routerLinkActive="active">Pipes</a>
+          <a routerLink="/" routerLinkActive="active">Animations</a>          
+        </div>
+</div>
+    </li>
     </ul>
 </nav>
 <br><br><br>
 <div>
-    <input type="text" #id (input)="0">
+    <!--<input type="text" #id (input)="0">-->
     <router-outlet></router-outlet>
 </div>
 
 <!--<app-other></app-other>-->
 
+<!-- Trigger/Open The Modal -->
+<button id="myBtn" (click)='openModal()'>Alert</button>
+
+<div id="myModal" class="modal">
+  <div class="modal-content" style="width:40%;">
+     <div class="modal-header">
+      <span class="close" (click)='closeModal()'>&times;</span>
+      
+     </div> 
+     <div class="modal-body">
+      <h3>This is demo alert or popup box</h3>
+     </div>
+     
+  </div>
+</div>

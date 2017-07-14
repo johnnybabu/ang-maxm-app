@@ -11,6 +11,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { ArraySortPipe } from './sort.pipe';
 import { Filter } from './filter.pipe';
+import { Unique } from './pipes/unique.pipe';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -20,6 +21,17 @@ import { TemplateDrivenComponent } from './template-driven/template-driven.compo
 import { DataDrivenComponent } from './data-driven/data-driven.component';
 import { ServerCommnComponent } from './server-commn.component';
 import { OtherComponent } from './other/other.component';
+
+import { Demo1Component } from './demo1.component';
+import { AdBannerComponent } from  './dynamic-comps/ad-banner.component';
+import { HeroJobAdComponent }   from './dynamic-comps/hero-job-ad.component';
+import { HeroProfileComponent } from './dynamic-comps/hero-profile.component';
+import { AdDirective } from './dynamic-comps/ad.directive';
+import { AdService } from './dynamic-comps/ad-service';
+import { HeroChildComponent } from './comp-interaction/hero-child.component';
+import { HeroParentComponent } from './comp-interaction/hero-parent.component';
+import { NameChildComponent } from './comp-interaction/name-child.component';
+import { VersionChildComponent } from './comp-interaction/version-child.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +44,16 @@ import { OtherComponent } from './other/other.component';
     ServerCommnComponent,
     OtherComponent,
     ArraySortPipe,
-    Filter
+    Filter,
+    Unique,
+    Demo1Component,
+    AdBannerComponent,
+    HeroJobAdComponent,
+    HeroProfileComponent,
+    HeroChildComponent,
+    HeroParentComponent,
+    NameChildComponent,
+    VersionChildComponent
   ],
   imports: [
     BrowserModule,routing,NgbModule,NgbModule.forRoot(),
@@ -41,7 +62,8 @@ import { OtherComponent } from './other/other.component';
     FormsModule,ReactiveFormsModule,
     HttpModule,JsonpModule
   ],
-  providers: [],
+  providers: [AdService],
+  entryComponents: [ HeroJobAdComponent, HeroProfileComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

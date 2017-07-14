@@ -55,8 +55,7 @@ onClick() {
 
 
 
-  ngOnInit() { this.getHeroes();    
-    this.products=this.origProducts;
+  ngOnInit() { this.getHeroes();        
     this.getProducts(); 
     this.productsForm=new FormGroup({
             //'id':new FormControl('55'),
@@ -141,7 +140,8 @@ showTB=-1;
   getProducts(){
       this.heroService.getProducts()
                       .subscribe(
-                          products=>this.products=products,
+                          products=>{this.products=products;
+                          this.origProducts=this.products;},                          
                           error=>this.errorMessage=<any>error);
   }
 
@@ -197,7 +197,7 @@ showTB=-1;
 
   //filtering logic starts here...
   //this.products=this.origProducts;
-  filterNames(filVal,ekey){
+  globalFilter(filVal,ekey){
     //alert(filVal+' '+ekey.keyCode);
     this.products=this.origProducts;
   
@@ -205,12 +205,30 @@ showTB=-1;
     for(let prod of this.products)
     {
       var re = new RegExp(filVal, 'gi');      
-      
-      if(prod.product_name.match(re)){       
+      //not working for numbers...
+      if(prod.product_name.match(re) || prod.category.match(re) || prod.sub_category.match(re)){       
         filArray.push(prod);
       }
     }
     this.products=filArray;
   }
   //filtering logic ends here...
+
+selectedCategory='all';
+  categFilter(category){
+    
+    let cfilArray=[];
+    this.products=this.origProducts;
+    var re = new RegExp(category, 'gi');
+    if(category==='all'){this.products=this.origProducts;} else {
+        for( let prod of this.products){
+        if(prod.category.match(re)){
+          cfilArray.push(prod);
+        }
+      }
+      this.products=cfilArray;
+    }        
+  }
+
+  movies=['Spotlight','Interstellar','Matrix','Spotlight','1408','Matrix','1408'];
 }

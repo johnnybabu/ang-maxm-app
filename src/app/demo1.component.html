@@ -1,0 +1,56 @@
+<h2>This is from demo1 component</h2>
+<!--<add-banner [ads]="ads"></add-banner>-->
+<hero-parent></hero-parent>
+
+<h2>Animated Modal with Header and Footer</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn" (click)='openModal()'>Open Modal</button>
+
+
+
+<div id="myModal" class="modal">
+  <!-- The Modal -->
+  <div class="modal-content">
+    <!-- Modal content -->
+    <div class="modal-header">
+      <span class="close" (click)='closeModal()'>&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <!-- The modal body -->
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="email">Email:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="Enter email" [(ngModel)]="user.email" name='email'>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Password:</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" [(ngModel)]="user.password" name='password'>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label><input type="checkbox"> Remember me</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- modal body end -->
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+  <!-- Modal content end-->
+</div>
+<!-- The Modal end-->
