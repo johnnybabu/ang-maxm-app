@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdInputModule,MdButtonModule, MdCheckboxModule} from '@angular/material';
+import 'hammerjs';
 
 import { routing } from './app.route';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -60,7 +63,9 @@ import { VersionChildComponent } from './comp-interaction/version-child.componen
     ModalModule.forRoot(),
     BootstrapModalModule,
     FormsModule,ReactiveFormsModule,
-    HttpModule,JsonpModule
+    HttpModule,JsonpModule,
+    BrowserAnimationsModule,
+    MdInputModule,MdButtonModule, MdCheckboxModule
   ],
   providers: [AdService],
   entryComponents: [ HeroJobAdComponent, HeroProfileComponent ],
