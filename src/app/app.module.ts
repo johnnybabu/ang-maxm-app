@@ -45,6 +45,7 @@ import { VersionChildComponent } from './comp-interaction/version-child.componen
     TemplateDrivenComponent,
     DataDrivenComponent,
     ServerCommnComponent,
+    //DialogResultExampleDialog,
     OtherComponent,
     ArraySortPipe,
     Filter,

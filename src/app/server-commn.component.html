@@ -1,7 +1,6 @@
 <div class="container">
-    <h2>Server Communications through http protocol {{mode}}</h2>
+    <h3>Server Communications through http protocol {{mode}}</h3>
     <!--<h1>Tour of Heroes ({{mode}})</h1>-->
-    <h3>Heroes:</h3>
     <!--<div class="grid-style1">
 <ul>
   <li *ngFor="let hero of heroes">{{hero.title}}</li>
@@ -22,7 +21,7 @@
 
 
 
-    <i class="fa fa-american-sign-language-interpreting fa-5x" aria-hidden="true"> </i>
+    <!-- <i class="fa fa-american-sign-language-interpreting fa-5x" aria-hidden="true"> </i>
     <button md-raised-button color="warn">Click me!</button>
     <button md-mini-fab>Click me!</button>
     <button (click)="onClick()">Alert</button>
@@ -30,7 +29,7 @@
     <span *ngIf="!showPosts">Show Posts</span>
     <span *ngIf="showPosts">Hide Posts</span>
 </button>
-    <!--<input type="text" [(ngModel)]="filVal" (keyup)="0">{{filVal}}-->
+
     <input type="text" placeholder="Search" #queryElem (keyup)="0">{{queryElem.value}}
     <div *ngIf="showPosts" class="grid-style1">
         <table class="table table-bordered table-fixedheader table-condensed table-striped table-hover table-responsive">
@@ -51,15 +50,15 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
 
     <!--<label>New hero name: <input #newHeroName /></label>
 <button (click)="addHero(newHeroName.value); newHeroName.value=''">Add Hero</button>-->
 
-    <hr>
+    
     <div class="row">
         <div class="col-lg-6">
-            <div class="panel panel-default" *ngIf="showProductForm">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <h4>Enter Product Details</h4>
                     <form [formGroup]="productsForm" (ngSubmit)="addProducts()" class="form-horizontal">
@@ -102,7 +101,7 @@
                 <div class="panel-body">
                     <h4>Product Details</h4>
                     <input #filVal (keyup)="globalFilter(filVal.value,$event)" placeholder="Search">
-                    <button style="float:right;" type="button" class="btn btn-success btn-md" (click)="showProductForm=!showProductForm">
+                    <button style="float:right;" type="button" class="btn btn-success btn-md" (click)="openPopupForm()">
                         <span class="badge">+</span>Add Product
                     </button>
 
@@ -186,3 +185,41 @@
             <li *ngFor="let movie of movies|unique">{{movie}}</li>
         </ul>
     </div>
+
+
+
+
+    <div id="myModal" class="modal">
+  <!-- The Modal -->
+  <div class="modal-content" style="width:50%;">
+    <!-- Modal content -->
+    <div class="modal-header">
+      <span class="close" (click)='closeModal()'>&times;</span>
+      <h4>Enter Product Details</h4>
+    </div>
+    <div class="modal-body">
+      <!-- The modal body -->
+      <md-input-container>
+        <input mdInput placeholder="Favorite food" value="Sushi">
+    </md-input-container>
+    <form class="example-form">
+        <md-input-container class="example-full-width">
+            <input mdInput placeholder="Email" [formControl]="emailFormControl">
+            <md-error *ngIf="emailFormControl.hasError('pattern')">
+            Please enter a valid email address
+            </md-error>
+            <md-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+            </md-error>
+        </md-input-container>
+    </form>
+    <button md-raised-button color="primary">Save</button>
+    </div>
+    <!-- modal body end -->
+          
+    <!-- <div class="modal-footer">
+    </div> -->
+  </div>
+  <!-- Modal content end-->
+</div>
+<!-- The Modal end-->

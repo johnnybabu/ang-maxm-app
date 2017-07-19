@@ -28,4 +28,6 @@ export class DataDrivenComponent{
         }
         return null;
     }
+
+    fruits=['Apple','Mango','Banana','Grapes','Promogrante','Custard Apple','Strawberry'];
 }

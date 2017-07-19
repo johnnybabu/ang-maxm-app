@@ -25,7 +25,7 @@ export class ServerCommnComponent implements OnInit{
   mode = 'Observables';
   productsForm:FormGroup;
   product = new Products();
-   constructor (overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal,private heroService: HeroService) {
+   constructor (private heroService: HeroService) {
      //overlay.defaultViewContainer = vcRef;
      //this.origProducts=this.products;
    }
@@ -34,24 +34,7 @@ updFilter(inp){
   this.filVal=inp;
 }
 
-onClick() {
-    this.modal.alert()
-        .size('lg')
-        .showClose(true)
-        .title('A simple Alert style modal window')      
-        .body(`
-            <h4>Alert is a classic (title/body/footer) 1 button modal window that 
-            does not block.</h4>
-            <b>Configuration:</b>
-            <ul>
-                <li>Non blocking (click anywhere outside to dismiss)</li>
-                <li>Size large</li>
-                <li>Dismissed with default keyboard key (ESC)</li>
-                <li>Close wth button click</li>
-                <li>HTML content</li>
-            </ul>`)
-        .open();
-  }
+
 
 
 
@@ -231,4 +214,32 @@ selectedCategory='all';
   }
 
   movies=['Spotlight','Interstellar','Matrix','Spotlight','1408','Matrix','1408'];
+  
+selectedOption: string;
+openPopupForm(){
+  document.getElementById('myModal').style.display = "block";
+  // let dialogRef = this.dialog.open(DialogResultExampleDialog);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     this.selectedOption = result;
+  //   });
+  }
+ closeModal() {
+        document.getElementById('myModal').style.display = "none";       
+    }    
+      
+    emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(EMAIL_REGEX)]);
+
 }
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+// @Component({
+//   selector: 'dialog-result-example-dialog',
+//   //templateUrl: 'dialog-result-example-dialog.html',
+//   template:'<p>This is modal dialog by angular material</p>'
+// })
+// export class DialogResultExampleDialog {
+//   constructor(public dialogRef: MdDialogRef<DialogResultExampleDialog>) {}
+// }
+
