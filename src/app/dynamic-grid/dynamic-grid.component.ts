@@ -65,11 +65,64 @@ export class DynamicGridComponent implements OnInit {
       for (let data of this.dataArray) {
         var re = new RegExp(mySearch.text_value, 'gi');
         //not working for numbers...
-        if (data[mySearch.field_Value].match(re)) {
+        //if (data[mySearch.field_Value].match(re)) {
+          if(data[mySearch.field_Value].match('^.*'+mySearch.text_value+'.*$')){
           filArray.push(data);
         }
       }
       this.dataArray = filArray;
     }
   }
+
+
+
+
+
+  //Sorting logic starts here...  
+  sortToggle:boolean=false;
+  col_name='';   
+  onSortField(field){
+    if((this.col_name===field && this.sortToggle==true) || this.col_name=='')
+    {this.sortToggle=false;} else {this.sortToggle=true;}      
+
+    let isColString:any;
+    for(let name of this.dataArray){
+      isColString=name[field];
+    }   
+
+    if(isNaN(isColString)){ //if string
+      if(this.sortToggle==false){
+        //sorting string start...
+        this.dataArray.sort(function(a, b) {           
+        var nameA = a[field].toUpperCase(); // ignore upper and lowercase
+        var nameB = b[field].toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+    } else {
+      //this.PnameSortFlag=false;
+      this.dataArray.reverse();
+    } 
+    //sorting string end...
+  }else{ //if number
+      if(this.sortToggle==false){
+        this.dataArray.sort(function (a, b) {
+        return b[field] - a[field];
+      });
+      } else{
+        this.dataArray.sort(function (a, b) {
+        return a[field] - b[field];
+        });
+      }    
+    }        
+    this.col_name=field;          
+  }
+  //Sorting logic ends here...
+
 }

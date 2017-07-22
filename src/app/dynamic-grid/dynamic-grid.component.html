@@ -37,7 +37,12 @@
     <table class="table table-bordered table-condensed table-striped">
       <thead>
         <tr>
-          <th *ngFor="let field of fieldsArray">{{field}}</th>
+          <th *ngFor="let field of fieldsArray">
+            <span style="cursor:pointer;" (click)="onSortField(field)">
+              {{field}}
+            <span><i class="fa fa-caret-down" style="font-size:18px"></i></span>
+            </span>
+          </th>
         </tr>
       </thead>
       <tbody>
