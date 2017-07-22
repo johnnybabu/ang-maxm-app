@@ -56,8 +56,7 @@ export class DynamicGridComponent implements OnInit {
     }
   }
 
-  onSubmit(mySearch) {
-    console.log(mySearch);
+  onSubmit(mySearch) {    
     if (mySearch.table_Value === 'Select Table' && mySearch.text_value === '') {
       this.errorMsg = "Please provide field and serch text";
     } else {
@@ -74,10 +73,18 @@ export class DynamicGridComponent implements OnInit {
     }
   }
 
+  removeAssociate(data){
+    console.log(data);
+  }
+
+
+  onSelectField(field){
+    alert(field);
+  }
 
 
 
-
+  //at first it is reversing--problem
   //Sorting logic starts here...  
   sortToggle:boolean=false;
   col_name='';   

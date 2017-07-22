@@ -43,12 +43,23 @@
             <span><i class="fa fa-caret-down" style="font-size:18px"></i></span>
             </span>
           </th>
-        </tr>
+          <th>Delete 
+            <div *ngIf='fieldsList' style="background-color:darkgray;float:left;position:fixed;border:1px solid black;">
+              <span *ngFor="let field of fieldsArray" style="padding:5px;">
+                <input type="checkbox" (click)="onSelectField(field)"> {{field}}<br>
+              </span>
+            </div>
+            <i (click)="fieldsList=!fieldsList" style="cursor:pointer;float:right;" class="fa fa-bars" aria-hidden="true"></i>
+          </th>
+        </tr>        
       </thead>
       <tbody>
         <tr *ngFor="let data of dataArray">
           <td *ngFor="let field of fieldsArray">{{data[field]}}</td>
-        </tr>
+          <td>
+          <span style="cursor:pointer;" (click)="removeAssociate(data)"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+          </td>
+        </tr>        
       </tbody>
     </table>
   </div>
