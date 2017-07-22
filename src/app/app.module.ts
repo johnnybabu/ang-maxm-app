@@ -35,6 +35,7 @@ import { HeroChildComponent } from './comp-interaction/hero-child.component';
 import { HeroParentComponent } from './comp-interaction/hero-parent.component';
 import { NameChildComponent } from './comp-interaction/name-child.component';
 import { VersionChildComponent } from './comp-interaction/version-child.component';
+import { DynamicGridComponent } from './dynamic-grid/dynamic-grid.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { VersionChildComponent } from './comp-interaction/version-child.componen
     HeroChildComponent,
     HeroParentComponent,
     NameChildComponent,
-    VersionChildComponent
+    VersionChildComponent,
+    DynamicGridComponent
   ],
   imports: [
     BrowserModule,routing,NgbModule,NgbModule.forRoot(),
