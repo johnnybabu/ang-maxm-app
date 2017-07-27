@@ -1,9 +1,9 @@
-<p>
-  dynamic-grid works!
-</p>
 
+<div class="container-fluid">
+  <input style="float:right;" type="text" placeholder="global search" (input)="0" #srchVal>{{srchVal.value}}
 <div class="row" style="text-align:center;">
   <h3 style="top:5px;bottom:20px;color:green;">Global Search</h3>
+  
   <div class="col-md-4" style="text-align:left;">
     Search Form/Table:
     <select [(ngModel)]="search.table_Value" (change)="onSearchTable(search.table_Value)">
@@ -30,7 +30,7 @@
 <div class="row" style="text-align:center;">
   <h3 style="color:green">{{search.table_Value}}</h3>
 </div>
-
+</div>
 
 <div class="container">
   <div class="row">
@@ -54,7 +54,7 @@
         </tr>        
       </thead>
       <tbody>
-        <tr *ngFor="let data of dataArray">
+        <tr *ngFor="let data of dataArray|filter:srchVal.value">
           <td *ngFor="let field of fieldsArray">{{data[field]}}</td>
           <td>
           <span style="cursor:pointer;" (click)="removeAssociate(data)"><i class="fa fa-trash-o" aria-hidden="true"></i></span>

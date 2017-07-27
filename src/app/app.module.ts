@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { ArraySortPipe } from './sort.pipe';
-import { Filter } from './filter.pipe';
+import { Filter } from './pipes/filter.pipe';
 import { Unique } from './pipes/unique.pipe';
 
 import { AppComponent } from './app.component';
@@ -36,6 +36,9 @@ import { HeroParentComponent } from './comp-interaction/hero-parent.component';
 import { NameChildComponent } from './comp-interaction/name-child.component';
 import { VersionChildComponent } from './comp-interaction/version-child.component';
 import { DynamicGridComponent } from './dynamic-grid/dynamic-grid.component';
+
+import { GlobalSearchService } from "app/global-search.service";
+import { ArrayFilterService} from './services/array-filter.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,7 @@ import { DynamicGridComponent } from './dynamic-grid/dynamic-grid.component';
     BrowserAnimationsModule,
     MdInputModule,MdButtonModule, MdCheckboxModule
   ],
-  providers: [AdService],
+  providers: [AdService,GlobalSearchService,ArrayFilterService],
   entryComponents: [ HeroJobAdComponent, HeroProfileComponent ],
   bootstrap: [AppComponent]
 })

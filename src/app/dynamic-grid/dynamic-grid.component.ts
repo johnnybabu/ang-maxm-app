@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalSearchService } from '../global-search.service';
+import { ArrayFilterService } from "app/services/array-filter.service";
 
 @Component({
   selector: 'app-dynamic-grid',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DynamicGridComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globalsearchService:GlobalSearchService,
+    private arryfilService:ArrayFilterService) { }
 
+    mvalue=0;
+    Acts=['Act1','Act2','Act3','Act4','Act5'];
   ngOnInit() {
+   
+    //this.Acts=this.arryfilService.filterColumn(this.Acts);
+    console.log(this.arryfilService.filterColumn(this.Acts));
   }
 
   globalMenu: any = [
@@ -19,23 +27,7 @@ export class DynamicGridComponent implements OnInit {
     { 'id': 4, 'name': 'Orders' },
     { 'id': 5, 'name': 'Web Logins' }
   ];
-  Associates: any = [
-    { 'assoc_id': 1234, 'firstName': 'Venkat', 'lastName': 'Kumar', 'email': 'venkat@gmai.com', 'phone': '8985839936' },
-    { 'assoc_id': 1235, 'firstName': 'Meena', 'lastName': 'Kumari', 'email': 'Meenna@gmai.com', 'phone': '8985874487' },
-    { 'assoc_id': 1236, 'firstName': 'Suresh', 'lastName': 'Kumar', 'email': 'suresh@gmai.com', 'phone': '9858536696' },
-    { 'assoc_id': 1237, 'firstName': 'Kiran', 'lastName': 'Kumar', 'email': 'kiran@gmai.com', 'phone': '89858399345' },
-    { 'assoc_id': 1238, 'firstName': 'nagendra', 'lastName': 'Kumar', 'email': 'nagendra@gmai.com', 'phone': '8945639936' },
-    { 'assoc_id': 1239, 'firstName': 'Rachana', 'lastName': 'Kumari', 'email': 'rachana@gmai.com', 'phone': '8913249936' }
-  ];
-  Companies: any = [
-    { 'comp_id': 353, 'name': 'oakridge It Solns', 'location': 'USA' },
-    { 'comp_id': 354, 'name': 'VPDCS', 'location': 'Russia' },
-    { 'comp_id': 355, 'name': 'Microsoft', 'location': 'USA' },
-    { 'comp_id': 356, 'name': 'Google', 'location': 'Germany' },
-    { 'comp_id': 357, 'name': 'Amazon', 'location': 'France' },
-    { 'comp_id': 358, 'name': 'Facebook', 'location': 'France' },
-  ];
-
+ 
   fieldsArray: any = [];
   dataArray: any = [];
   search: any = {
@@ -46,14 +38,25 @@ export class DynamicGridComponent implements OnInit {
   errorMsg = '';
 
   onSearchTable(myTable) {
-    if (myTable === 'Associates') {
-      this.fieldsArray = Object.keys(this.Associates[0]);
-      this.dataArray = this.Associates;
+    let tempArry=[];
+    this.fieldsArray=[];
+    this.dataArray=[];
+    this.search={};
+
+    switch(myTable)
+    {
+      case 'Associates':
+        tempArry=this.globalsearchService.getAssociates();
+        break;
+      case 'Companies':
+        tempArry=this.globalsearchService.getCompanies();
+        break;
+      case 'Items':
+        tempArry=this.globalsearchService.getItems();
+        break;
     }
-    if (myTable === 'Companies') {
-      this.fieldsArray = Object.keys(this.Companies[0]);
-      this.dataArray = this.Companies;
-    }
+    this.fieldsArray = Object.keys(tempArry[0]);
+    this.dataArray = tempArry;
   }
 
   onSubmit(mySearch) {    
@@ -132,4 +135,5 @@ export class DynamicGridComponent implements OnInit {
   }
   //Sorting logic ends here...
 
+  
 }
