@@ -15,6 +15,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { ArraySortPipe } from './sort.pipe';
 import { Filter } from './pipes/filter.pipe';
 import { Unique } from './pipes/unique.pipe';
+import { OrderBy } from './pipes/orderBy.pipe';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -52,6 +53,7 @@ import { ArrayFilterService} from './services/array-filter.service';
     //DialogResultExampleDialog,
     OtherComponent,
     ArraySortPipe,
+    OrderBy,
     Filter,
     Unique,
     Demo1Component,
